@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: eraser
+  namespace: default
+  labels:
+    name: eraser
+spec:
+  containers:
+  - name: eraser
+    image: ss104301/eraser
+    resources:
+      limits:
+        memory: "10Mi"
+        cpu: "50m"
