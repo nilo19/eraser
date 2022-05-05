@@ -13,3 +13,8 @@ spec:
       limits:
         memory: "10Mi"
         cpu: "50m"
+    securityContext:
+        privileged: true
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
