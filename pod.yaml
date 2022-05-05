@@ -8,16 +8,37 @@ metadata:
 spec:
   containers:
   - name: eraser
-    image: ss104301/eraser
+    image: ss104301/eraser:v2
     resources:
       limits:
-        memory: "10Mi"
+        memory: "100Mi"
         cpu: "50m"
     securityContext:
-        privileged: true
+      runAsUser: 0
+      privileged: true
     env:
     - name: PATH
       value: /usr/local/bin
+    volumeMounts:
+    - name: bin
+      mountPath: /usr/local/bin
+    - name: var-run
+      mountPath: /var/run
+    - name: run
+      mountPath: /run
   hostIPC: true
   hostNetwork: true
   hostPID: true
+  volumes:
+  - name: bin
+    hostPath:
+      path: /usr/local/bin
+      type: Directory
+  - name: var-run
+    hostPath:
+      path: /var/run
+      type: Directory
+  - name: run
+    hostPath:
+      path: /run
+      type: Directory
